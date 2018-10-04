@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Product {
 //private Fields
@@ -20,13 +22,18 @@ public class Product {
 	private String code;
 	private String name;
 	private String brand;
+	@JsonIgnore
 	private String description;
 	@Column(name="unit_price")
 	private double unitPrice;
+	private int quantity;
 	@Column(name="is_active")
+	@JsonIgnore
 	private boolean active;
+	@JsonIgnore
 	@Column(name="category_id")
 	private int categoryId;
+	@JsonIgnore
 	@Column(name="supplier_id")
 	private int supplierId;
 	private int purchases;
@@ -73,6 +80,15 @@ public class Product {
 	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
+	
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 	public boolean isActive() {
 		return active;
 	}
@@ -103,14 +119,13 @@ public class Product {
 	public void setViews(int views) {
 		this.views = views;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
-				+ description + ", unitPrice=" + unitPrice + ", active=" + active + ", categoryId=" + categoryId
-				+ ", supplierId=" + supplierId + ", purchases=" + purchases + ", views=" + views + "]";
+				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
+				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
+				+ views + "]";
 	}
-
-	
-	
+		
 }
