@@ -8,6 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -20,10 +25,14 @@ public class Product {
 	@Column(name="p_id")
 	private int id;
 	private String code;
+	@NotBlank(message="Please Enter product name!")
 	private String name;
+	@NotBlank(message="Please Enter Brand name!")
 	private String brand;
 	@JsonIgnore
+	@NotBlank(message="Please Enter the description!")
 	private String description;
+	@Min(value=1, message="The price can not be less than 1!")
 	@Column(name="unit_price")
 	private double unitPrice;
 	private int quantity;
@@ -39,6 +48,19 @@ public class Product {
 	private int purchases;
 	private int views;
 	
+	//Multipart file Uploaded
+	@Transient
+	private MultipartFile file;
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	public Product() {
 		this.code="PRD"+UUID.randomUUID().toString().substring(26).toUpperCase();
 	}
