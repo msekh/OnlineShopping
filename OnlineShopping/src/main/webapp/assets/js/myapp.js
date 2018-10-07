@@ -12,6 +12,10 @@ $(function() {
 	case 'All Products':
 		$('#listProducts').addClass('active');
 		break;
+		
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
+		break;
 	default:
 		if (menu == "Home")
 			break;
@@ -101,5 +105,15 @@ $(function() {
 							} ]
 				});
 	}
+	
+	
+	//dismissing the after 3 seconds
+	var $alert=$('.alert');
+	if($alert.length){
+		setTimeout(() => {
+			$alert.fadeOut('slow');
+		}, 3000);
+	}
+	
 
 });
