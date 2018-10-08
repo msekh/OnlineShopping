@@ -12,12 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mtech.onlineshopping.util.FileUploadUtility;
+import com.mtech.onlineshopping.validator.ProductValidator;
 import com.mtech.shoppingBackEnd.dao.CategoryDAO;
 import com.mtech.shoppingBackEnd.dao.ProductDAO;
 import com.mtech.shoppingBackEnd.dto.Category;
@@ -58,6 +61,8 @@ public class ManagementController {
 	public String handlerProductsSubmission( @Valid @ModelAttribute("product") Product mProduct 
 			,BindingResult results, Model model, HttpServletRequest request) {
 		
+		new ProductValidator().validate(mProduct, results);
+		
 		//Check if there are any errors
 		if(results.hasErrors()) {
 			model.addAttribute("userClickManageProducts", true);
@@ -76,6 +81,22 @@ public class ManagementController {
 		}
 		
 		return "redirect:/manage/products?operation=product";
+	}
+	
+	@RequestMapping(value="/product/{id}/activation", method=RequestMethod.POST)
+	@ResponseBody
+	public String handleProductActvation(@PathVariable int id) {
+		//is going to fetch the product from the database
+		Product product=productDAO.get(id);
+		boolean isActive=product.isActive();
+		//Actvating and deactivating based on the value
+		product.setActive(!product.isActive());
+		//udating the product
+		productDAO.update(product);
+		return (isActive)?""
+				+ "You have successfully deactivated the product with id "+product.getId()
+		:"You have successfully activated the product with id "+product.getId() ;
+		
 	}
 	// returning categories for the all request mapping
 	@ModelAttribute("categories")
