@@ -96,3 +96,37 @@ VALUES (p_id_sequence.nextval,'PRDABCXYZDEFX', 'Dell Latitude E6510', 'dell', 'T
 
 INSERT INTO product (p_id,code, name, brand, description, unit_price, quantity, is_active, category_id, supplier_id, purchases, views)
 VALUES (p_id_sequence.nextval,'PRDABCXYZDEFX', 'Sony 10', 'Sony', 'This is one of the best TV series from dell that can be used!', 48000, 5,'TRUE', 1, 18, 0, 0 );
+
+
+-- the address table to store the user billing and shipping addresses
+CREATE TABLE address (
+	id NUMBER,
+	user_id int,
+	address_line_one VARCHAR2(100),
+	address_line_two VARCHAR2(100),
+	city VARCHAR2(20),
+	division VARCHAR2(20),
+	country VARCHAR2(20),
+	postal_code VARCHAR2(10),
+	is_billing VARCHAR2(5),
+	is_shipping VARCHAR2(5),
+	CONSTRAINT billing_ck check(is_billing in('TRUE','FALSE')),
+	CONSTRAINT shipping_ck check(is_shipping in('TRUE','FALSE')),
+	CONSTRAINT fk_address_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (user_id),
+	CONSTRAINT pk_address_id PRIMARY KEY (id)
+);
+CREATE SEQUENCE address_seq
+ START WITH     1
+ INCREMENT BY   1
+ NOCACHE
+ NOCYCLE;
+ 
+ -- the cart table to store the user cart top-level details
+CREATE TABLE cart (
+	id NUMBER,
+	user_id INTEGER,
+	grand_total DECIMAL(10,2),
+	cart_lines INTEGER,
+	CONSTRAINT fk_cart_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (user_id),
+	CONSTRAINT pk_cart_id PRIMARY KEY (id)
+);

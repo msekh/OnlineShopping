@@ -20,8 +20,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Product {
 //private Fields
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY, generator = "u_id_Sequence")
-	@SequenceGenerator(name = "u_id_Sequence", sequenceName = "ID_SEQ")
+	@GeneratedValue(strategy=GenerationType.IDENTITY, generator = "p_id_Sequence")
+	@SequenceGenerator(allocationSize=1, initialValue=1,name = "p_id_Sequence", sequenceName = "ID_SEQ")
 	@Column(name="p_id")
 	private int id;
 	private String code;

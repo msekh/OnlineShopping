@@ -34,7 +34,7 @@ public class ProductTestCase {
 		product.setUnitPrice(25000);
 		product.setQuantity(6);
 		product.setActive(true);
-		product.setCategoryId(104);
+		product.setCategoryId(54);
 		product.setSupplierId(18);
 
 		assertEquals("Something went wrong while inserting a new product!", true, productDAO.add(product));
@@ -47,7 +47,7 @@ public class ProductTestCase {
 		product.setUnitPrice(25000);
 		product.setQuantity(5);
 		product.setActive(true);
-		product.setCategoryId(104);
+		product.setCategoryId(54);
 		product.setSupplierId(18);
 		
 		assertEquals("Something went wrong while inserting a new product!", true, productDAO.add(product));
@@ -60,7 +60,7 @@ public class ProductTestCase {
 		product.setUnitPrice(25000);
 		product.setQuantity(3);
 		product.setActive(true);
-		product.setCategoryId(102);
+		product.setCategoryId(52);
 		product.setSupplierId(18);
 		assertEquals("Something went wrong while inserting a new product!", true, productDAO.add(product));
 		
@@ -72,7 +72,7 @@ public class ProductTestCase {
 		product.setUnitPrice(25000);
 		product.setQuantity(4);
 		product.setActive(true);
-		product.setCategoryId(103);
+		product.setCategoryId(53);
 		product.setSupplierId(18);
 		assertEquals("Something went wrong while inserting a new product!", true, productDAO.add(product));
 		

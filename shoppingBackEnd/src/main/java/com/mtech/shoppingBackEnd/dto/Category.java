@@ -15,7 +15,7 @@ public class Category {
 	@Column(name="ID")
 	//@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@GeneratedValue(strategy=GenerationType.IDENTITY, generator = "id_Sequence")
-	@SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
+	@SequenceGenerator(allocationSize=1, initialValue=1,name = "id_Sequence", sequenceName = "ID_SEQ")
 	private int id;
 	private String name;
 	private String description;
