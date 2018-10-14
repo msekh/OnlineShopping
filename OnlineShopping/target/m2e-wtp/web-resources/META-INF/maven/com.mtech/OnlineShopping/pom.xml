@@ -21,9 +21,9 @@
 			<artifactId>shoppingBackEnd</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		
+
 		<!-- SPIRNG -->
-			<dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
@@ -33,7 +33,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-
+		<!-- SPRING WEB FLOW -->
+		<dependency>
+			<groupId>org.springframework.webflow</groupId>
+			<artifactId>spring-webflow</artifactId>
+			<version>2.5.1.RELEASE</version>
+		</dependency>
 		<!-- JSTL -->
 		<dependency>
 			<groupId>jstl</groupId>

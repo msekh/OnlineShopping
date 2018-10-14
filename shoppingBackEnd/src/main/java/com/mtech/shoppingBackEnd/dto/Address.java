@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+
 
 @Entity
 public class Address {
@@ -13,8 +15,7 @@ public class Address {
 @GeneratedValue(strategy=GenerationType.IDENTITY, generator = "address_id_Sequence")
 @SequenceGenerator(allocationSize=1, initialValue=1, name = "address_id_Sequence", sequenceName = "address_seq")
 private int id;
-@Column(name="user_id")
-private int userId;
+
 @Column(name="address_line_one")
 private String addressLineOne;
 @Column(name="address_line_two")
@@ -37,12 +38,17 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public int getUserId() {
-	return userId;
+/*---------------*/
+@ManyToOne
+private User user;
+
+public User getUser() {
+	return user;
 }
-public void setUserId(int userId) {
-	this.userId = userId;
+public void setUser(User user) {
+	this.user = user;
 }
+//-------------------//
 public String getAddressLineOne() {
 	return addressLineOne;
 }
@@ -95,7 +101,7 @@ public void setShipping(boolean shipping) {
 /*for debugging and logging activity*/
 @Override
 public String toString() {
-	return "Address [id=" + id + ", userId=" + userId + ", addressLineOne=" + addressLineOne + ", addressLineTwo="
+	return "Address [id=" + id + ", addressLineOne=" + addressLineOne + ", addressLineTwo="
 			+ addressLineTwo + ", city=" + city + ", division=" + division + ", country=" + country + ", postalCode="
 			+ postalCode + ", billing=" + billing + ", shipping=" + shipping + "]";
 }

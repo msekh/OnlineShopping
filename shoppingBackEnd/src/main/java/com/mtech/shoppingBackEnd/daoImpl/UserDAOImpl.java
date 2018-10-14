@@ -1,5 +1,7 @@
 package com.mtech.shoppingBackEnd.daoImpl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
@@ -58,6 +60,34 @@ public class UserDAOImpl implements UserDAO {
 			return sessionFactory.getCurrentSession().createQuery(selectQuery, User.class)
 					.setParameter("email", email)
 					.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public Address getBillingAddress(User user) {
+		String selectQuery="FROM Address where user = :user and billing = :billing ";
+		try {
+			return sessionFactory.getCurrentSession().createQuery(selectQuery, Address.class)
+					.setParameter("user",user)
+					.setParameter("billing", true)
+					.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<Address> listShippingAddresses(User user) {
+		String selectQuery="FROM Address where user = :user and shipping = :shipping ";
+		try {
+			return sessionFactory.getCurrentSession().createQuery(selectQuery, Address.class)
+					.setParameter("user",user)
+					.setParameter("shipping", true)
+					.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
