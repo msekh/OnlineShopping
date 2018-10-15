@@ -43,8 +43,9 @@
 		base-path="/WEB-INF/views/flows"
 		flow-builder-services="flowBuilderServices">
 		<wf:flow-location-pattern
-			value="/**/*-flows.xml" />
+			value="/**/*-flow.xml" />
 	</wf:flow-registry>
+	
 	<wf:flow-builder-services
 		id="flowBuilderServices" view-factory-creator="viewFactoryCreator" />
 	<bean
@@ -54,6 +55,7 @@
 	<bean
 		class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
 		<property name="flowRegistry" ref="flowRegistry" />
+		<property name="order" value="-1"></property>
 	</bean>
 	<bean id="viewFactoryCreator"
 		class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">

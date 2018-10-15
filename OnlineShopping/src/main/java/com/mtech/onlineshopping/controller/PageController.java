@@ -102,7 +102,13 @@ public class PageController {
 		mv.addObject("userClickShowProduct", true);
 		return mv;
 	}
-	
+	/*having similar mapping for web flow id */
+	@RequestMapping(value= {"/register"})	
+	public ModelAndView register() {
+		ModelAndView mv=new ModelAndView("page");
+		mv.addObject("title", "Contact Us");
+		return mv;
+	}
 //	@RequestMapping(value= {"/test/{greeting}"})
 //	public ModelAndView test(@PathVariable("greeting") String greeting) {
 //		if(greeting==null) {
