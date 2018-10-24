@@ -1,5 +1,6 @@
 package com.mtech.shoppingBackEnd.daoImpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -15,7 +16,8 @@ import com.mtech.shoppingBackEnd.dto.User;
 
 @Repository("userDAO")
 @Transactional
-public class UserDAOImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO,Serializable {
+	private static final long serialVersionUID = 1L;
 	@Autowired
 	private SessionFactory sessionFactory;
 

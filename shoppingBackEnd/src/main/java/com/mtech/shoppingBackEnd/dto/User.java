@@ -1,5 +1,7 @@
 package com.mtech.shoppingBackEnd.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="user_detail")
-public class User {
+public class User implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY, generator = "u_id_Sequence")
 	@SequenceGenerator(name = "u_id_Sequence", sequenceName = "ID_SEQ", allocationSize=1,initialValue=1)
@@ -27,6 +34,7 @@ public class User {
 	private String contactNumber;
 	private String role;
 	private String password;
+	private String confirmPassword;
 	private boolean enabled=true;	
 	//-------------------------//
 	@OneToOne(mappedBy="user", cascade=CascadeType.ALL)
@@ -81,20 +89,27 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
 	public boolean isEnabled() {
 		return enabled;
 	}
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
-	
-	/*for purposes of debugging and logging*/
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", contactNumber=" + contactNumber + ", role=" + role + ", password=" + password + ", enabled="
-				+ enabled + "]";
+				+ ", contactNumber=" + contactNumber + ", role=" + role + ", password=" + password
+				+ ", confirmPassword=" + confirmPassword + ", enabled=" + enabled + ", cart=" + cart + "]";
 	}
+	
+	/*for purposes of debugging and logging*/
+	
 	
 	
 

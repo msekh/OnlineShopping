@@ -1,5 +1,7 @@
 package com.mtech.shoppingBackEnd.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Cart {
+public class Cart implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	/*private field*/
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY , generator = "cart_id_Sequence")
